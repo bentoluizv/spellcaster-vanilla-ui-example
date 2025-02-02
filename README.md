@@ -20,4 +20,5 @@ The content of the package that interacts with the wallet can be accessed via th
 
  If everything goes well and the user accepts the authentication, the wallet's public key will be returned.
 
- You can see the full example [here](https://github.com/bentoluizv/spellcaster-vanilla-ui-example/blob/main/index.html).
+ You can see the full code example [here](https://github.com/bentoluizv/spellcaster-vanilla-ui-example/blob/main/index.html).
+ And the example running live [here](https://spellcaster-vanilla-ui-example.vercel.app/).
