@@ -33,22 +33,42 @@
         import * as core from "http://127.0.0.1:8080/index.mjs/index.js";
 
         const spellcaster = core.browser;
-        console.log(spellcaster);
-
 
         const walletConnectBtn = document.getElementById("wallet-btn");
 
+        let isSuccessfullConnect = false;
+
         walletConnectBtn.addEventListener("click", async () => {
-            walletConnectBtn.disabled = true;
-            walletConnectBtn.innerText = "Connecting...";
+
+            if (!isSuccessfullConnect) {
+                walletConnectBtn.disabled = true;
+                walletConnectBtn.innerText = "Connecting...";
 
 
-            const provider = spellcaster.getProvider();
-            console.log(provider);
-
-
+                const provider = spellcaster.getProvider();
+                try {
+                    const publicKey = await spellcaster.connect(provider);
+                    walletConnectBtn.disabled = false;
+                    walletConnectBtn.innerText = ellipsify(publicKey);
+                    isSuccessfullConnect = true;
+                } catch (err) {
+                    walletConnectBtn.disabled = false;
+                    walletConnectBtn.innerText = "Connect Wallet";
+                    console.log(err);
+                }
+            }
 
         });
+
+        function ellipsify(str = "", len = 4) {
+            if (str.length > 30) {
+                return (
+                    str.substring(0, len) + ".." + str.substring(str.length - len, str.length)
+                );
+            }
+            return str;
+        }
+
     </script>
 </body>
 
