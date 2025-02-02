@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example 01 - Phantom Wallet Connect Button</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="w-screen h-screen bg-zinc-50 antialiased font-sans overflow-hidden">
+    <div class="flex flex-col w-full h-full">
+        <header class="flex justify-between content-end h-18 bg-zinc-800 text-zinc-400">
+            <div class="flex gap-2 h-full items-end p-2">
+                <h1 class="text-2xl font-bold">Example 01:</h1>
+                <p class="">Phantom Wallet Connect Button</p>
+            </div>
+            <div class="flex h-full p-2">
+                <button id="wallet-btn"
+                    class="bg-violet-600 text-white px-4 py-2 rounded-lg hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 hover:cursor-pointer transition transform duration-150 disabled:bg-violet-400 disabled:hover:cursor-not-allowed disabled:text-gray-200 disabled:transform-none">
+                    Connect Wallet
+                </button>
+            </div>
+        </header>
+        <main>
+
+        </main>
+
+    </div>
+
+
+    <script type="module">
+        import * as core from "http://127.0.0.1:8080/index.mjs/index.js";
+
+        const spellcaster = core.browser;
+        console.log(spellcaster);
+
+
+        const walletConnectBtn = document.getElementById("wallet-btn");
+
+        walletConnectBtn.addEventListener("click", async () => {
+            walletConnectBtn.disabled = true;
+            walletConnectBtn.innerText = "Connecting...";
+
+
+            const provider = spellcaster.getProvider();
+            console.log(provider);
+
+
+
+        });
+    </script>
+</body>
+
+</html>
